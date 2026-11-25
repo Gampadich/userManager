@@ -59,36 +59,34 @@ export function renderUsers(user){
             editBtn.classList.add('saveBtn')
             isEditPressed = true
         } else {
-            if (nameInp.value.trim() === ''
-                || nameInp.value.trim() === user.name
-                && emailInp.value.trim() === ''
-                || emailInp.value.trim() === user.email
-                && cityInp.value.trim() === ''
-                || cityInp.value.trim() === user.address.city
-            ) {
-                nameInp.remove()
-                userName.innerText = user.name
-                emailInp.remove()
-                userEmail.innerText = user.email
-                cityInp.remove()
-                userCity.innerText = user.address.city
-            } else {
-                const userObj = {
-                    id : user.id, 
-                    name : nameInp.value.trim(),
-                    email : emailInp.value.trim(),
-                    address : {
-                        city : cityInp.value.trim()
-                    }
-                }
-                patchUser(userObj)
-                userName.innerText = nameInp.value
-                nameInp.remove()
-                userEmail.innerText = emailInp.value
-                emailInp.remove()
-                userCity.innerText = cityInp.value
-                cityInp.remove()
+            let username = nameInp.value
+            let email = emailInp.value
+            let city = cityInp.value
+            if (nameInp.value.trim() === '' || nameInp.value.trim() === user.name){
+                username = user.name
             }
+            if (emailInp.value.trim() === '' || emailInp.value.trim() === user.email){
+                email = user.email
+            }
+            if (cityInp.value.trim() === '' || cityInp.value.trim() === user.address.city){
+                city = user.address.city
+            }
+            userCity.innerText = user.address.city
+            const userObj = {
+                id : user.id, 
+                name : username,
+                email : email,
+                address : {
+                    city : city
+                }
+            }
+            patchUser(userObj)
+            userName.innerText = nameInp.value
+            nameInp.remove()
+            userEmail.innerText = emailInp.value
+            emailInp.remove()
+            userCity.innerText = cityInp.value
+            cityInp.remove()
             editBtn.classList.remove('saveBtn')
             editBtn.classList.add('edit')
             editBtn.innerText = 'Edit'
