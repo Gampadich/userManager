@@ -16,8 +16,11 @@ export function renderUsers(user){
     editBtn.classList.add('edit')
     textBox.classList.add('textBox')
     userName.innerText = user.name
+    userName.data_test_id = 'name'
     userEmail.innerText = user.email
+    userEmail.data_test_id = 'email'
     userCity.innerText = user.address.city
+    userCity.data_test_id = 'city'
     buttonBox.classList.add('buttonBox')
     textBox.append(userName, userEmail, userCity)
     buttonBox.append(editBtn, deleteButton)
